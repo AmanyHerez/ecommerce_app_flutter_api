@@ -1,11 +1,11 @@
-class ShopModel {
+class LoginModel {
   bool? status;
   String? message;
   UserData? data;
 
-  ShopModel({this.status, this.message, this.data});
+  LoginModel({this.status, this.message, this.data});
 
-  ShopModel.fromJson(Map<String, dynamic> json) {
+  LoginModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? new UserData.fromJson(json['data']) : null;
