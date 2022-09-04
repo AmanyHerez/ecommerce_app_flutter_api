@@ -23,10 +23,10 @@ class ShopLayout extends StatelessWidget {
             currentIndex:provider.currentIndex ,
             onTap: provider.chagebottomNavigationBar,
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home),label: ' ',),
-              BottomNavigationBarItem(icon: Icon(Icons.category),label: ' ',),
-              BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined),label: ' ',),
-              BottomNavigationBarItem(icon: Icon(Icons.settings),label: ' ',),
+              BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home ',),
+              BottomNavigationBarItem(icon: Icon(Icons.category),label: 'Categories ',),
+              BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined),label: 'Favorite ',),
+              BottomNavigationBarItem(icon: Icon(Icons.settings),label: ' Settings',),
             ],
           ),
         );

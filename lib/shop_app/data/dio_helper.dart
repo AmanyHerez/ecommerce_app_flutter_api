@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:final_gsg_app_flutter/shop_app/constant/constant.dart';
 import 'package:final_gsg_app_flutter/shop_app/data/sp_helper.dart';
+import 'package:final_gsg_app_flutter/shop_app/models/categories_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/home_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/login_model.dart';
 
@@ -67,5 +68,24 @@ class DioHelper {
     print(homeModel.status);
     print(homeModel.data!.banners![0].image );
   return homeModel;
+  }
+  getCategoriesData()async{
+    var url=Uri.parse(ApiConstants.baseUrl+ApiConstants.getCategoriesEndPoint) ;
+    Map<String, dynamic> mapHeaders = {
+      'lang': 'ar',
+    };
+
+    Response response = await dio.get(
+        url.toString(),
+
+        options: Options(headers: mapHeaders)
+
+    );
+    CategoriesModel categoriesModel=CategoriesModel.fromJson(response.data);
+
+
+    print(categoriesModel.status);
+    //print(categoriesModel.data!.data![0]);
+    return categoriesModel;
   }
 }
