@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
-                  'Cateegories',
+                  'Categories',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
               ),
@@ -109,14 +109,13 @@ Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
           Stack(
               alignment: AlignmentDirectional.bottomStart,
               children: [
-                if (model.discount != 0)
-
                   Image.network(
                     model.image!,
                     width: double.infinity,
                     height: 210,
                     //fit: BoxFit.cover,
                   ),
+                if (model.discount != 0)
                 Container(
                   color: Colors.red,
                   child: Padding(
@@ -141,6 +140,7 @@ Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
+          Spacer(),
           Row(
             children: [
               Text(
@@ -158,14 +158,14 @@ Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
                   " ${model.oldPrice!.round()}",
                   style: TextStyle(
                     fontSize: 10,
-                    color: Colors.grey,
+                    color: Colors.grey.shade700,
                     decoration: TextDecoration.lineThrough,
                   ),
                 ),
               Spacer(),
               CircleAvatar(
                 radius: 15,
-                backgroundColor: provider.favarites![model.id!]==true?Colors.red:Colors.grey,
+                backgroundColor: provider.favarites![model.id!]==true?Colors.red.shade400:Colors.grey,
                 child: IconButton(
                     onPressed: () {
                       //print(provider.favarites.toString());

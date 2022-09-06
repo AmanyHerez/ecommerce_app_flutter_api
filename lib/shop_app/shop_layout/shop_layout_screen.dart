@@ -18,11 +18,15 @@ class ShopLayout extends StatelessWidget {
     return Consumer<ShopProvider>(
       builder: (context, provider, child) {
         return Scaffold(
-          appBar: AppBar(actions: [
+          appBar: AppBar(
+            title: Text('e-commerce',style: TextStyle(color: Colors.black87),),
+            elevation:0,
+              backgroundColor: Colors.transparent,
+              actions: [
             IconButton(onPressed: (){
               //SpHelper.spHelper.deleteToken();
               AppRouter.NavigateToWidget(SearchScreen());
-        }, icon: Icon(Icons.search))
+        }, icon: Icon(Icons.search,color: Colors.black87,))
           ],),
           body:provider.BnScreen[provider.currentIndex],
           bottomNavigationBar: BottomNavigationBar(

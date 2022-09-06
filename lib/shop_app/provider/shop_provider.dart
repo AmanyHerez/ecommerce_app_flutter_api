@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:final_gsg_app_flutter/shop_app/data/dio_helper.dart';
 import 'package:final_gsg_app_flutter/shop_app/data/sp_helper.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/categories_model.dart';
+import 'package:final_gsg_app_flutter/shop_app/models/favorite_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/home_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/login_model.dart';
+import 'package:final_gsg_app_flutter/shop_app/models/search_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,8 @@ class ShopProvider extends ChangeNotifier {
     getCategoriesData();
     getUserData();
     updateUserData();
+    Search();
+    getFavorites();
   }
 
 //************ bottom navigation bar *************//
@@ -63,12 +67,20 @@ class ShopProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  ChangeFavoritesModel? changeFavoritesModel;
+
   ChangeFavorites(int productId) async {
-    // favarites[productId] = !(favarites![productId!]);
-    // notifyListeners();
-    ChangeFavoritesModel changeFavoritesModel =
-        await DioHelper.dioHelper.ChangeFavorites(productId);
-    //favarites.addAll(changeFavoritesModel);
+    favarites[productId] = !favarites[productId!]!;
+     notifyListeners();
+    changeFavoritesModel = await DioHelper.dioHelper.ChangeFavorites(productId);
+    notifyListeners();
+  }
+
+  FavoritesModel? favoritesModel;
+
+  getFavorites() async {
+    favoritesModel = await DioHelper.dioHelper.getFavorites();
+
     notifyListeners();
   }
 
@@ -77,7 +89,7 @@ class ShopProvider extends ChangeNotifier {
   TextEditingController emailProfileController = TextEditingController();
   TextEditingController phoneProfileController = TextEditingController();
   GlobalKey<FormState> profileKey = GlobalKey<FormState>();
- late LoginModel userModel;
+  late LoginModel userModel;
 
   getUserData() async {
     userModel = await DioHelper.dioHelper.getUserData();
@@ -91,5 +103,14 @@ class ShopProvider extends ChangeNotifier {
         phoneProfileController.text);
     notifyListeners();
   }
-//////////////////////**********************//////////////////////////
+
+//////////////////////*******search**********//////////////////////////
+  TextEditingController searchController = TextEditingController();
+  GlobalKey<FormState> searchKey = GlobalKey<FormState>();
+  SearchModel? searchModel;
+
+  Search() async {
+    searchModel = await DioHelper.dioHelper.Search(searchController.text);
+    notifyListeners();
+  }
 }

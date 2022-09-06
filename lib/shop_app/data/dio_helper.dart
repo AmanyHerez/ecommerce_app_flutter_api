@@ -4,8 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:final_gsg_app_flutter/shop_app/constant/constant.dart';
 import 'package:final_gsg_app_flutter/shop_app/data/sp_helper.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/categories_model.dart';
+import 'package:final_gsg_app_flutter/shop_app/models/favorite_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/home_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/login_model.dart';
+import 'package:final_gsg_app_flutter/shop_app/models/search_model.dart';
 
 import '../models/change_favarite_model.dart';
 
@@ -103,7 +105,7 @@ class DioHelper {
     //print(categoriesModel.data!.data![0]);
     return categoriesModel;
   }
-
+///////////////************ ChangeFavorites**************//////////////////////////////
   ChangeFavorites(int productId) async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.favoritesEndPoint);
     Map<String, dynamic> mapHeaders = {
@@ -127,6 +129,28 @@ class DioHelper {
     return changeFavoritesModel;
   }
 
+ getFavorites() async {
+    var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.favoritesEndPoint);
+    Map<String, dynamic> mapHeaders = {
+      'lang': 'ar',
+      'Content-Type': 'application/json',
+      // 'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization':
+      'MsBbAUSmykMklVsbxN9CE2uq0tCnuWofNhZr6UsLr3B5ho8b5TjEMobZ0g8wkqieh6UYeP'
+    };
+
+
+    Response response = await dio.post(url.toString(),
+         options: Options(headers: mapHeaders));
+    FavoritesModel favoritesModel =
+    FavoritesModel.fromJson(response.data);
+
+    print(favoritesModel.status);
+
+    print(favoritesModel.data.toString());
+    return favoritesModel;
+  }
+//////////////////////*********profile*************/////////////////////////////
   getUserData() async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.profileEndPoint);
     Map<String, dynamic> mapHeaders = {
@@ -170,5 +194,29 @@ class DioHelper {
     print(userModel.data?.name);
 
     return userModel;
+  }
+////////////////*****************Search**************/////////////////////////
+  Search(String text)async{
+
+      var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.searchEndPoint);
+      Map<String, dynamic> mapHeaders = {
+        'lang': 'ar',
+        'Content-Type': 'application/json',
+        // 'Authorization':'${SpHelper.spHelper.getToken()} '
+        'Authorization':
+        'kiJezAsbXXrIpBf45FdagfiD79nnC36baWhBbogmqQ0WYlpD0ZQN9vJ2UroldItUnbnmMx'
+      };
+      Map<String, dynamic> mapData = {
+        'text': text,
+      };
+
+      Response response = await dio.post(url.toString(),
+          data: mapData, options: Options(headers: mapHeaders));
+      SearchModel searchModel =
+      SearchModel.fromJson(response.data);
+
+      print(searchModel.message);
+      return searchModel;
+
   }
 }

@@ -6,6 +6,7 @@ class CustomTextfield extends StatelessWidget {
   Widget? suffix;
   final String? title;
   final Function validator;
+  final Function?  onChanged;
   bool? obscureText;
 
   CustomTextfield(
@@ -13,6 +14,7 @@ class CustomTextfield extends StatelessWidget {
         required this.validator,
         required this.controller,
         this.suffix,
+        this. onChanged,
         this.obscureText,
         this.textInputType});
 
@@ -20,10 +22,12 @@ class CustomTextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return TextFormField(
+      onChanged:(x) =>  onChanged!(x) ,
       obscureText: obscureText?? false,
       keyboardType: textInputType,
       controller: controller,
       validator: (x) => validator(x),
+
       decoration: InputDecoration(
 
 

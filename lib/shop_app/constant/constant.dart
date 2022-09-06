@@ -7,4 +7,5 @@ class ApiConstants {
   static String  favoritesEndPoint = 'favorites';
   static String  profileEndPoint = 'profile';
   static String  updateProfileEndPoint = 'update-profile';
+  static String  searchEndPoint = 'products/search';
 }
