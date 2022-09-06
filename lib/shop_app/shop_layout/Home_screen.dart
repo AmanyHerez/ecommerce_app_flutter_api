@@ -99,7 +99,9 @@ Widget buliderWidget() => Column(
       ],
     );
 
-Widget buliderGridProduct(ProductsModel model) => Container(
+Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
+  builder: (context, provider, child) {
+    return Container(
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,14 +109,14 @@ Widget buliderGridProduct(ProductsModel model) => Container(
           Stack(
               alignment: AlignmentDirectional.bottomStart,
               children: [
-            if (model.discount != 0)
+                if (model.discount != 0)
 
-            Image.network(
-              model.image!,
-              width: double.infinity,
-              height: 210,
-              //fit: BoxFit.cover,
-            ),
+                  Image.network(
+                    model.image!,
+                    width: double.infinity,
+                    height: 210,
+                    //fit: BoxFit.cover,
+                  ),
                 Container(
                   color: Colors.red,
                   child: Padding(
@@ -129,7 +131,7 @@ Widget buliderGridProduct(ProductsModel model) => Container(
                   ),
 
                 ),
-          ]),
+              ]),
 
           Text(
             model.name!,
@@ -161,13 +163,23 @@ Widget buliderGridProduct(ProductsModel model) => Container(
                   ),
                 ),
               Spacer(),
-              IconButton(
-                  onPressed: () {}, icon: Icon(Icons.favorite_border_outlined))
+              CircleAvatar(
+                radius: 15,
+                backgroundColor: provider.favarites![model.id!]==true?Colors.red:Colors.grey,
+                child: IconButton(
+                    onPressed: () {
+                      //print(provider.favarites.toString());
+                      provider.ChangeFavorites(model.id!);
+                    }, icon: Icon(Icons.favorite_border,size: 14,color: Colors.white,)),
+              )
             ],
           ),
         ],
       ),
     );
+  },
+
+);
 
 Widget buildCategoryItem(DataModel model) => Stack(
       alignment: AlignmentDirectional.bottomCenter,

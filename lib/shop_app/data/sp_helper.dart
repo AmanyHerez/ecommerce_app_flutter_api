@@ -15,6 +15,6 @@ class SpHelper {
     return sharedPreferences!.getString('token');
   }
   deleteToken(){
-    sharedPreferences!.remove('token');
+    sharedPreferences!.remove('N35COQWHilCMrbh7Yd6EK0IP9bjVXaF87x9MhaF7SdXTlwZ6E6IFhxUTIrw1n482FhbCZj');
   }
 }

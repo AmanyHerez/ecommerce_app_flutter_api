@@ -1,16 +1,12 @@
-import 'dart:developer';
-
-import 'package:final_gsg_app_flutter/shop_app/data/dio_helper.dart';
-import 'package:final_gsg_app_flutter/shop_app/provider/auth_provider.dart';
-import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
-import 'package:final_gsg_app_flutter/shop_app/shop_layout/shop_layout_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/widget/custome_textfield.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import '../../provider/auth_provider.dart';
+import '../../router/router.dart';
+import '../../shop_layout/shop_layout_screen.dart';
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +17,17 @@ class LoginScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Form(
+                key: provider.RegisterKey,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
                           child: Image.asset(
-                        'asset/image/logo.png',
-                        width: 157,
-                        height: 109,
-                      )),
+                            'asset/image/logo.png',
+                            width: 157,
+                            height: 109,
+                          )),
                       SizedBox(
                         height: 20,
                       ),
@@ -42,9 +39,21 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
+                      Text('Name'),
+                      CustomTextfield(
+                        controller: provider.nameController,
+                        validator: provider.nullValidation,
+                        textInputType: TextInputType.name,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Text('Email'),
                       CustomTextfield(
-                        controller: provider.emailController,
+                        controller: provider.emailRegController,
                         validator: provider.emailValidation,
                         textInputType: TextInputType.emailAddress,
                       ),
@@ -54,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                       Text('password'),
 
                       CustomTextfield(
-                        controller: provider.passwordController,
+                        controller: provider.passwordRegController,
                         validator: provider.passwordValidation,
                         textInputType: TextInputType.text,
                         suffix: IconButton(
@@ -66,17 +75,32 @@ class LoginScreen extends StatelessWidget {
                         obscureText:provider.isObscure,
                       ),
                       SizedBox(
+                        height: 20,
+                      ),
+                      Text('phone Number'),
+                      CustomTextfield(
+                        controller: provider.phoneController,
+                        validator: provider.nullValidation,
+                        textInputType: TextInputType.phone,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
                         height: 30,
                       ),
                       ElevatedButton(
                           onPressed: () async {
                             // DioHelper.dioHelper.login( provider.emailController.text,
                             //   provider. passwordController.text,);
-                           await provider.login();
+                           // await provider.login();
+                              if(provider.RegisterKey.currentState!.validate()){
+                                provider.Register();
+                                AppRouter.NavigateWithReplacemtnToWidget(ShopLayout());
+                              }
 
-                            AppRouter.NavigateWithReplacemtnToWidget(ShopLayout());
                           },
-                          child: Text('login')),
+                          child: Text('Register')),
                     ],
                   ),
                 ),

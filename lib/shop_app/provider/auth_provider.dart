@@ -8,7 +8,6 @@ import '../router/router.dart';
 import '../view/auth_screen/login_screen.dart';
 
 class AuthProvider extends ChangeNotifier {
-
   //************ visible or not password*************//
   bool isObscure = false;
   IconData suffix = Icons.visibility;
@@ -32,6 +31,21 @@ class AuthProvider extends ChangeNotifier {
     //SpHelper.spHelper.SaveToken(token);
 
     log(" token :${token}");
+  }
+
+  /////////////////////***********Register*************/////////////////////
+  GlobalKey<FormState> RegisterKey = GlobalKey();
+  TextEditingController emailRegController = TextEditingController();
+  TextEditingController passwordRegController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+
+  Register() async {
+    await DioHelper.dioHelper.Register(
+        nameController.text,
+        emailRegController.text,
+        passwordRegController.text,
+        phoneController.text);
   }
 
   //***************method Signout***********************//

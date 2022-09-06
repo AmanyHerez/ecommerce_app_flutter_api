@@ -1,8 +1,14 @@
+import 'package:final_gsg_app_flutter/shop_app/data/dio_helper.dart';
+import 'package:final_gsg_app_flutter/shop_app/data/sp_helper.dart';
+import 'package:final_gsg_app_flutter/shop_app/provider/auth_provider.dart';
 import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
+import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/Home_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/categories_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/favarite_screen.dart';
+import 'package:final_gsg_app_flutter/shop_app/shop_layout/search_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/setting_screen.dart';
+import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 class ShopLayout extends StatelessWidget {
@@ -14,8 +20,9 @@ class ShopLayout extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(actions: [
             IconButton(onPressed: (){
-              //provider.SignOut();
-        }, icon: Icon(Icons.logout))
+              //SpHelper.spHelper.deleteToken();
+              AppRouter.NavigateToWidget(SearchScreen());
+        }, icon: Icon(Icons.search))
           ],),
           body:provider.BnScreen[provider.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
