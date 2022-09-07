@@ -3,6 +3,7 @@ import 'package:final_gsg_app_flutter/shop_app/data/dio_helper.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/categories_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
 import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
+import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/widget/carusal_slider_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import '../models/home_model.dart';
 import '../provider/shop_provider.dart';
 import '../provider/shop_provider.dart';
 import '../provider/shop_provider.dart';
+import 'details_product_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -90,7 +92,12 @@ Widget buliderWidget() => Column(
                 childAspectRatio: 1 / 1.75,
                 children: List.generate(
                   provider.Products.length,
-                  (index) => buliderGridProduct(provider.Products[index]),
+                  (index) => InkWell(
+                      onTap: (){
+                        provider.ProductDetails(provider.Products[index].id!);
+                        AppRouter.NavigateToWidget(ProductDetailsScreen());
+                      },
+                      child: buliderGridProduct(provider.Products[index])),
                 ),
               ),
             );

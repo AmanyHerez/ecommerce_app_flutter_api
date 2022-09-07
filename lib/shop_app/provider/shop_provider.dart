@@ -6,6 +6,7 @@ import 'package:final_gsg_app_flutter/shop_app/models/categories_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/favorite_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/home_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/login_model.dart';
+import 'package:final_gsg_app_flutter/shop_app/models/product_details_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/search_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
@@ -83,7 +84,14 @@ class ShopProvider extends ChangeNotifier {
 
     notifyListeners();
   }
-
+  /////////////////////////*****product Details*******/////////////////////////
+  ProductDetailsModel? selectedProduct;
+  ProductDetails(int id)async{
+    selectedProduct=null;
+    notifyListeners();
+    selectedProduct=await DioHelper.dioHelper.ProductDetails(id);
+    notifyListeners();
+  }
   //////////////////////*******profile********//////////////////////////
   TextEditingController nameProfileController = TextEditingController();
   TextEditingController emailProfileController = TextEditingController();
