@@ -27,22 +27,25 @@ class CategoriesScreen extends StatelessWidget {
   }
 }
 
-Widget bulidCatItem(DataModel model) => Row(
-      children: [
-        Image(
-          image: NetworkImage(model.image!),
-          width: 80,
-          height: 80,
-          fit: BoxFit.cover,
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        Text(
-          model.name!,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        Spacer(),
-        Icon(Icons.arrow_forward_ios)
-      ],
+Widget bulidCatItem(DataModel model) => Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Image(
+            image: NetworkImage(model.image!),
+            width: 80,
+            height: 80,
+            fit: BoxFit.cover,
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Text(
+            model.name!,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          Spacer(),
+          Icon(Icons.arrow_forward_ios)
+        ],
+      ),
     );

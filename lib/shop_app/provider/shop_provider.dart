@@ -72,26 +72,38 @@ class ShopProvider extends ChangeNotifier {
 
   ChangeFavorites(int productId) async {
     favarites[productId] = !favarites[productId!]!;
-     notifyListeners();
+    notifyListeners();
     changeFavoritesModel = await DioHelper.dioHelper.ChangeFavorites(productId);
+    if (!changeFavoritesModel!.status!) {
+      favarites[productId] = !favarites[productId!]!;
+    } else {
+      getFavorites();
+      notifyListeners();
+    }
+
     notifyListeners();
   }
 
   FavoritesModel? favoritesModel;
 
+  // List<FavoritesData> getFav=[];
   getFavorites() async {
     favoritesModel = await DioHelper.dioHelper.getFavorites();
+    //getFav.addAll(favoritesModel.data!.data!.toList());
 
     notifyListeners();
   }
+
   /////////////////////////*****product Details*******/////////////////////////
   ProductDetailsModel? selectedProduct;
-  ProductDetails(int id)async{
-    selectedProduct=null;
+
+  ProductDetails(int id) async {
+    selectedProduct = null;
     notifyListeners();
-    selectedProduct=await DioHelper.dioHelper.ProductDetails(id);
+    selectedProduct = await DioHelper.dioHelper.ProductDetails(id);
     notifyListeners();
   }
+
   //////////////////////*******profile********//////////////////////////
   TextEditingController nameProfileController = TextEditingController();
   TextEditingController emailProfileController = TextEditingController();

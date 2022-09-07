@@ -163,12 +163,12 @@ class DioHelper {
     };
 
     Response response =
-        await dio.post(url.toString(), options: Options(headers: mapHeaders));
+        await dio.get(url.toString(), options: Options(headers: mapHeaders));
     FavoritesModel favoritesModel = FavoritesModel.fromJson(response.data);
 
     print(favoritesModel.status);
-
     print(favoritesModel.data.toString());
+    print(favoritesModel.data!.data!.length.toString());
     return favoritesModel;
   }
 

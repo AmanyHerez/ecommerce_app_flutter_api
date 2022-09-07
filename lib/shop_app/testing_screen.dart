@@ -7,10 +7,13 @@ class TestingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(onPressed: (){
-           // DioHelper.dioHelper.ProductDetails();
-          }, child: Text('details product'))
+          Center(
+            child: ElevatedButton(onPressed: (){
+              DioHelper.dioHelper.getFavorites();
+            }, child: Text('details product')),
+          )
         ],
       ),
     );
