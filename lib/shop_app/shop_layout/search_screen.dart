@@ -25,33 +25,34 @@ class SearchScreen extends StatelessWidget {
                 children: [
                   CustomTextfield(
                     textInputType: TextInputType.text,
-                    suffix: Icon(Icons.search),
+                    suffix: IconButton(onPressed: (){
+                      //provider.Search(text);
+                    },icon:Icon(Icons.search)),
                     title: 'search',
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Write Your Search Hint Word';
-                        }
-                        return null;
-                      },
-                      controller: provider.searchController,
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please Write Your Search Hint Word';
+                      }
+                      return null;
+                    },
+                    controller: provider.searchController,
                     onChanged: (String text){
-                      //provider.Search();
-                      DioHelper.dioHelper.Search(text);
+                      provider.Search(text);
                       log(text);
                     },
 
                   ),
                   SizedBox(height: 20,),
-                 // if(provider.searchKey.currentState!.validate())
-                  Expanded(
-                    child: ListView.separated(
-                      itemBuilder: (context,index)=>
-                          buildListProduct(provider.searchModel!.data!.data![index],isOldPrice: false),
-                      separatorBuilder: (context,index)=>
-                          Divider(thickness: 2,),
-                      itemCount: provider.searchModel!.data!.data!.length,
-                    ),
-                  ),
+                  //if(provider.searchModel!.status!)
+                  //   Expanded(
+                  //   child: ListView.separated(
+                  //     itemBuilder: (context,index)=>
+                  //         buildListProduct(provider.searchModel!.data!.data![index],isOldPrice: false),
+                  //     separatorBuilder: (context,index)=>
+                  //         Divider(thickness: 2,),
+                  //     itemCount: provider.searchModel!.data!.data!.length,
+                  //   ),
+                  // ),
                 ],
 
               ),
@@ -63,7 +64,7 @@ class SearchScreen extends StatelessWidget {
   }
 }
 Widget buildListProduct(Product
-    model,
+model,
 
     {bool? isOldPrice=true,
     })=>

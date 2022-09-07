@@ -79,7 +79,7 @@ class DioHelper {
       'Content-Type': 'application/json',
       // 'Authorization':'${SpHelper.spHelper.getToken()} '
       'Authorization':
-          'kDpkeyTwG5WrA3sWNrRArqzO9peEfhn9il9n361ZtjKB3tomh3CFmRTkpw0kHvznHK33gr'
+          'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
 
     Response response =
@@ -236,7 +236,9 @@ class DioHelper {
         data: mapData, options: Options(headers: mapHeaders));
     SearchModel searchModel = SearchModel.fromJson(response.data);
 
+    print(searchModel.status);
     print(searchModel.message);
+    print(searchModel.data!.data!.length);
     return searchModel;
   }
 }

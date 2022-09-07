@@ -24,7 +24,7 @@ class ShopProvider extends ChangeNotifier {
     getCategoriesData();
     getUserData();
     updateUserData();
-    Search();
+    //Search();
     getFavorites();
   }
 
@@ -129,8 +129,8 @@ class ShopProvider extends ChangeNotifier {
   GlobalKey<FormState> searchKey = GlobalKey<FormState>();
   SearchModel? searchModel;
 
-  Search() async {
-    searchModel = await DioHelper.dioHelper.Search(searchController.text);
+  Search(String text) async {
+   searchModel = await DioHelper.dioHelper.Search(text);
     notifyListeners();
   }
 }
