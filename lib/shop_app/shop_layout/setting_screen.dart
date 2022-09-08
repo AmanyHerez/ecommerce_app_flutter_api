@@ -37,6 +37,7 @@ class SettingScreen extends StatelessWidget {
 
               ),
               SizedBox(height: 10,),
+              Divider(thickness: 2,),
               Row(
                 children: [
                   Icon(provider.isDark ?Icons.brightness_2:Icons.wb_sunny,size: 30,

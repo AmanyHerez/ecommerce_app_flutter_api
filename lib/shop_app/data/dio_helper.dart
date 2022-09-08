@@ -79,11 +79,11 @@ class DioHelper {
       'Content-Type': 'application/json',
       // 'Authorization':'${SpHelper.spHelper.getToken()} '
       'Authorization':
-          'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
+      'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
 
     Response response =
-        await dio.get(url.toString(), options: Options(headers: mapHeaders));
+    await dio.get(url.toString(), options: Options(headers: mapHeaders));
     HomeModel homeModel = HomeModel.fromJson(response.data);
 
     print(homeModel.status);
@@ -93,13 +93,13 @@ class DioHelper {
 
   getCategoriesData() async {
     var url =
-        Uri.parse(ApiConstants.baseUrl + ApiConstants.getCategoriesEndPoint);
+    Uri.parse(ApiConstants.baseUrl + ApiConstants.getCategoriesEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
     };
 
     Response response =
-        await dio.get(url.toString(), options: Options(headers: mapHeaders));
+    await dio.get(url.toString(), options: Options(headers: mapHeaders));
     CategoriesModel categoriesModel = CategoriesModel.fromJson(response.data);
 
     print(categoriesModel.status);
@@ -114,13 +114,13 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Authorization':
-          'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
+      'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
 
     Response response =
-        await dio.get(url.toString(), options: Options(headers: mapHeaders));
+    await dio.get(url.toString(), options: Options(headers: mapHeaders));
     ProductDetailsModel productDetailsModel =
-        ProductDetailsModel.fromJson(response.data);
+    ProductDetailsModel.fromJson(response.data);
 
     print(productDetailsModel.status);
     print(productDetailsModel.data!.name);
@@ -136,7 +136,7 @@ class DioHelper {
       'Content-Type': 'application/json',
       // 'Authorization':'${SpHelper.spHelper.getToken()} '
       'Authorization':
-          '3mJAj2csMpQfNDWgNyamCI1c5ghU9iOapQJUz8zV5uBtRx6sl9rIfWRMhsQx3fnQesq3C7'
+      '3mJAj2csMpQfNDWgNyamCI1c5ghU9iOapQJUz8zV5uBtRx6sl9rIfWRMhsQx3fnQesq3C7'
     };
     Map<String, dynamic> mapData = {
       'product_id': productId,
@@ -145,7 +145,7 @@ class DioHelper {
     Response response = await dio.post(url.toString(),
         data: mapData, options: Options(headers: mapHeaders));
     ChangeFavoritesModel changeFavoritesModel =
-        ChangeFavoritesModel.fromJson(response.data);
+    ChangeFavoritesModel.fromJson(response.data);
 
     print(changeFavoritesModel.status);
     print(changeFavoritesModel.message);
@@ -159,11 +159,11 @@ class DioHelper {
       'Content-Type': 'application/json',
       // 'Authorization':'${SpHelper.spHelper.getToken()} '
       'Authorization':
-          'MsBbAUSmykMklVsbxN9CE2uq0tCnuWofNhZr6UsLr3B5ho8b5TjEMobZ0g8wkqieh6UYeP'
+      'MsBbAUSmykMklVsbxN9CE2uq0tCnuWofNhZr6UsLr3B5ho8b5TjEMobZ0g8wkqieh6UYeP'
     };
 
     Response response =
-        await dio.get(url.toString(), options: Options(headers: mapHeaders));
+    await dio.get(url.toString(), options: Options(headers: mapHeaders));
     FavoritesModel favoritesModel = FavoritesModel.fromJson(response.data);
 
     print(favoritesModel.status);
@@ -179,11 +179,11 @@ class DioHelper {
       'lang': 'en',
       'Content-Type': 'application/json',
       'Authorization':
-          'MEzM2zbFKrfA8Y99v2XhXdSgY06M1i5mV5lqUmB1uq9WPhOLmRRvkCrDi8rvXaicdSOKfw'
+      'MEzM2zbFKrfA8Y99v2XhXdSgY06M1i5mV5lqUmB1uq9WPhOLmRRvkCrDi8rvXaicdSOKfw'
     };
 
     Response response =
-        await dio.get(url.toString(), options: Options(headers: mapHeaders));
+    await dio.get(url.toString(), options: Options(headers: mapHeaders));
     LoginModel profileModel = LoginModel.fromJson(response.data);
 
     print(profileModel.data?.name);
@@ -193,12 +193,12 @@ class DioHelper {
 //////////////////////*********Update*************/////////////////////////////
   UpdateUserData(String name, String email, String phone) async {
     var url =
-        Uri.parse(ApiConstants.baseUrl + ApiConstants.updateProfileEndPoint);
+    Uri.parse(ApiConstants.baseUrl + ApiConstants.updateProfileEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
       'Authorization':
-          'JPDMBsWT6LOdjjwM8I3xhdUkjAHgCqP2r61uakOiBcwHkr6AUpk9ubECYwlahWlTX0NMC4'
+      'JPDMBsWT6LOdjjwM8I3xhdUkjAHgCqP2r61uakOiBcwHkr6AUpk9ubECYwlahWlTX0NMC4'
     };
     Map<String, dynamic> mapData = {
       'name': name,
@@ -226,7 +226,7 @@ class DioHelper {
       'Content-Type': 'application/json',
       // 'Authorization':'${SpHelper.spHelper.getToken()} '
       'Authorization':
-          'kiJezAsbXXrIpBf45FdagfiD79nnC36baWhBbogmqQ0WYlpD0ZQN9vJ2UroldItUnbnmMx'
+      'kiJezAsbXXrIpBf45FdagfiD79nnC36baWhBbogmqQ0WYlpD0ZQN9vJ2UroldItUnbnmMx'
     };
     Map<String, dynamic> mapData = {
       'text': text,
