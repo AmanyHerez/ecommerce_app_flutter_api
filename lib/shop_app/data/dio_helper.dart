@@ -184,13 +184,13 @@ class DioHelper {
 
     Response response =
         await dio.get(url.toString(), options: Options(headers: mapHeaders));
-    LoginModel userModel = LoginModel.fromJson(response.data);
+    LoginModel profileModel = LoginModel.fromJson(response.data);
 
-    print(userModel.data?.name);
+    print(profileModel.data?.name);
 
-    return userModel;
+    return profileModel;
   }
-
+//////////////////////*********Update*************/////////////////////////////
   UpdateUserData(String name, String email, String phone) async {
     var url =
         Uri.parse(ApiConstants.baseUrl + ApiConstants.updateProfileEndPoint);

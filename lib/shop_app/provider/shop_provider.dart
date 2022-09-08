@@ -23,7 +23,7 @@ class ShopProvider extends ChangeNotifier {
     getHomeData();
     getCategoriesData();
     getUserData();
-    updateUserData();
+    //updateUserData();
     //Search();
     getFavorites();
   }
@@ -41,7 +41,12 @@ class ShopProvider extends ChangeNotifier {
     currentIndex = index;
     notifyListeners();
   }
-
+  //////////////////////*******theme mode********//////////////////////
+ bool isDark=false;
+  changeThemaMode(bool value){
+    isDark=value;
+    notifyListeners();
+  }
   /////******************************************////
   List<BannersModel> Banners = [];
   List<ProductsModel> Products = [];
@@ -109,15 +114,15 @@ class ShopProvider extends ChangeNotifier {
   TextEditingController emailProfileController = TextEditingController();
   TextEditingController phoneProfileController = TextEditingController();
   GlobalKey<FormState> profileKey = GlobalKey<FormState>();
-  late LoginModel userModel;
+   LoginModel? profileModel;
 
   getUserData() async {
-    userModel = await DioHelper.dioHelper.getUserData();
+    profileModel = await DioHelper.dioHelper.getUserData();
     notifyListeners();
   }
 
   updateUserData() async {
-    userModel = await DioHelper.dioHelper.UpdateUserData(
+    profileModel = await DioHelper.dioHelper.UpdateUserData(
         nameProfileController.text,
         emailProfileController.text,
         phoneProfileController.text);

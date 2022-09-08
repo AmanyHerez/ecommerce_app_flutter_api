@@ -29,10 +29,18 @@ class MyApp extends StatelessWidget {
           return AuthProvider();
         }),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: AppRouter.navKey,
-        home: ShopLayout(),
+      child: Consumer<ShopProvider>(
+        builder: (context, provider, child) {
+         return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            navigatorKey: AppRouter.navKey,
+            theme: provider.isDark ?ThemeData.dark():ThemeData.light(),
+
+
+            home: ShopLayout(),
+          );
+        },
+
       ),
     );
   }

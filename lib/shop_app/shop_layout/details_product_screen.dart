@@ -158,13 +158,16 @@ class ProductDetailsScreen extends StatelessWidget {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
+                              Divider(
+                                thickness: 2,
+                              ),
                               SizedBox(
-                                height: 10,
+                                height: 5,
                               ),
                               ReadMoreText(
                                 provider.selectedProduct!.data!.description!,
                                 colorClickableText: Colors.pink,
-                                trimLines: 8,
+                                trimLines: 7,
                                 trimMode: TrimMode.Line,
                                 trimCollapsedText: 'Show more',
                                 trimExpandedText: 'Show less',
