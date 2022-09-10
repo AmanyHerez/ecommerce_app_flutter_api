@@ -21,13 +21,13 @@ class ShopLayout extends StatelessWidget {
           appBar: AppBar(
             title: Text('e-commerce',style: TextStyle(color: Colors.black87),),
             elevation:0,
-              backgroundColor: Colors.transparent,
-              actions: [
-            IconButton(onPressed: (){
-              //SpHelper.spHelper.deleteToken();
-              AppRouter.NavigateToWidget(SearchScreen());
-        }, icon: Icon(Icons.search,color: Colors.black87,))
-          ],),
+            backgroundColor: Colors.transparent,
+            actions: [
+              IconButton(onPressed: (){
+                //SpHelper.spHelper.deleteToken();
+                AppRouter.NavigateToWidget(SearchScreen());
+              }, icon: Icon(Icons.search,color: Colors.black87,))
+            ],),
           body:provider.BnScreen[provider.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             type:BottomNavigationBarType.fixed,

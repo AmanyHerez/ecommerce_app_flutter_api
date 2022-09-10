@@ -41,6 +41,7 @@ dependencies:
   string_validator: ^0.3.0
   carousel_slider: ^4.1.1
   readmore: ^2.2.0
+  flutter_typeahead: ^4.1.0
 
 dev_dependencies:
   flutter_test:
