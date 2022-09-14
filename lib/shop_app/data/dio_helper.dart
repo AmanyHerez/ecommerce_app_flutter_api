@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:final_gsg_app_flutter/shop_app/constant/constant.dart';
 import 'package:final_gsg_app_flutter/shop_app/data/sp_helper.dart';
+import 'package:final_gsg_app_flutter/shop_app/models/add_cart_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/categories_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/favorite_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/home_model.dart';
@@ -262,5 +263,28 @@ class DioHelper {
     print(settingsModel.data!.about);
 
     return settingsModel;
+  }
+  ////////////********************add cart & delete***********//////////
+  AddToCart() async{
+    var url=Uri.parse(ApiConstants.baseUrl+ApiConstants.cartsEndPoint);
+    Map<String, dynamic> mapHeaders = {
+      'lang': 'ar',
+      'Content-Type': 'application/json',
+      // 'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization':
+      'DszarskqPhHmuZrBEhfeFTWmMV7tL875Ef1CSRVLnoQQkkzSpFE22lq1GYJHu3EZMsR8ZO'
+
+    };
+    Map<String,dynamic> mapData={
+      'product_id':53,
+    };
+    Response response=await dio.post(url.toString(),options: Options(headers: mapHeaders,),data: mapData);
+    AddCartModel addCartModel= AddCartModel.fromJson(response.data);
+    log("cart");
+    log(addCartModel.status.toString());
+    log(addCartModel.message!);
+    log(addCartModel.data!.product!.name!);
+    return addCartModel;
+
   }
 }

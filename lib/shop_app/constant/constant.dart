@@ -12,4 +12,5 @@ class ApiConstants {
   static String  searchEndPoint = 'products/search';
   static String  faqsEndPoint = 'faqs';
   static String  settingsEndPoint = 'settings';
+  static String  cartsEndPoint = 'carts';
 }
