@@ -4,6 +4,9 @@ import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../router/router.dart';
+import 'category_product_screen.dart';
+
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
 
@@ -15,7 +18,12 @@ class CategoriesScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: ListView.separated(
               itemBuilder: (context, index) =>
-                  bulidCatItem(provider.Categories[index]),
+                  InkWell(
+                    onTap: (){
+                      provider.getCategoriesProduct(provider.Categories[index].id!);
+                      //AppRouter.NavigateToWidget(CategoryProductScreen());
+                    },
+                      child: bulidCatItem(provider.Categories[index])),
               separatorBuilder: (context, index) => Divider(
                 height: 2,
                 color: Colors.grey,

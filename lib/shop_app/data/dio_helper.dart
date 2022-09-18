@@ -112,47 +112,47 @@ class DioHelper {
     return categoriesModel;
   }
   //////////////////////////**********category product******////////////////////////////
-  getCategoryProduct() async {
-    var url = Uri.parse(
-        ApiConstants.baseUrl + ApiConstants. CategoryproductEndPoint );
-    Map<String, dynamic> mapHeaders = {
-      'lang': 'en',
-      'Authorization':
-      'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
-    };
-    Map<String, dynamic> mapQuery = {
-      'category_id':44,
-    };
-
-    Response response =
-    await dio.get(url.toString(), options: Options(headers: mapHeaders,),queryParameters: mapQuery);
-    CategoryProductModel categoryProductModel =
-    CategoryProductModel.fromJson(response.data);
-
-    print(categoryProductModel.status);
-    print(categoryProductModel.data!.total);
-
-    return categoryProductModel;
-  }
-  // getCategoryProduct(int id) async {
+  // getCategoryProduct() async {
   //   var url = Uri.parse(
-  //       ApiConstants.baseUrl + ApiConstants. CategoryproductEndPoint + "$id");
+  //       ApiConstants.baseUrl + ApiConstants. CategoryproductEndPoint );
   //   Map<String, dynamic> mapHeaders = {
   //     'lang': 'en',
   //     'Authorization':
   //     'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
   //   };
+  //   Map<String, dynamic> mapQuery = {
+  //     'category_id':44,
+  //   };
   //
   //   Response response =
-  //   await dio.get(url.toString(), options: Options(headers: mapHeaders));
-  //   ProductDetailsModel productDetailsModel =
-  //   ProductDetailsModel.fromJson(response.data);
+  //   await dio.get(url.toString(), options: Options(headers: mapHeaders,),queryParameters: mapQuery);
+  //   CategoryProductModel categoryProductModel =
+  //   CategoryProductModel.fromJson(response.data);
   //
-  //   print(productDetailsModel.status);
-  //   print(productDetailsModel.data!.name);
+  //   print(categoryProductModel.status);
+  //   print(categoryProductModel.data!.total);
   //
-  //   return productDetailsModel;
+  //   return categoryProductModel;
   // }
+  getCategoryProduct(int id) async {
+    var url = Uri.parse(
+        ApiConstants.baseUrl + ApiConstants. CategoryproductEndPoint  + "$id");
+    Map<String, dynamic> mapHeaders = {
+      'lang': 'en',
+      'Authorization':
+      'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
+    };
+
+    Response response =
+    await dio.get(url.toString(), options: Options(headers: mapHeaders));
+      CategoryProductModel categoryProductModel =
+      CategoryProductModel.fromJson(response.data);
+
+      print(categoryProductModel.status);
+      //print(categoryProductModel.data!.total);
+
+      return categoryProductModel;
+  }
   //////////////////////////**********product Details******////////////////////////////
   ProductDetails(int id) async {
     var url = Uri.parse(
@@ -169,7 +169,7 @@ class DioHelper {
         ProductDetailsModel.fromJson(response.data);
 
     print(productDetailsModel.status);
-    print(productDetailsModel.data!.name);
+    //print(productDetailsModel.data!.name);
 
     return productDetailsModel;
   }

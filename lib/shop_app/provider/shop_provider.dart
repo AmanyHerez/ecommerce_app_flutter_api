@@ -12,6 +12,7 @@ import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../models/category_product_model.dart';
 import '../models/change_favarite_model.dart';
 import '../shop_layout/Home_screen.dart';
 import '../shop_layout/categories_screen.dart';
@@ -65,13 +66,23 @@ class ShopProvider extends ChangeNotifier {
     log(favarites.toString());
     notifyListeners();
   }
-
+/////////////*********************************/////////////////
   getCategoriesData() async {
     CategoriesModel categoriesModel =
         await DioHelper.dioHelper.getCategoriesData();
     Categories.addAll(categoriesModel.data!.data!.toList());
     notifyListeners();
   }
+  ///////////////////********category product**********//////////////////////
+  CategoryProductModel? SelectedCategoryProduct;
+  getCategoriesProduct(int id) async {
+    // SelectedCategoryProduct = null;
+    // notifyListeners();
+    SelectedCategoryProduct =
+    await DioHelper.dioHelper.getCategoryProduct(id);
+    notifyListeners();
+  }
+  // /////////////////******************//////////////////////
 
   ChangeFavoritesModel? changeFavoritesModel;
 

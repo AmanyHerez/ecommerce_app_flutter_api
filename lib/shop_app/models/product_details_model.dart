@@ -1,11 +1,11 @@
 class ProductDetailsModel {
   bool? status;
-  Null? message;
+
   ProductDetailsData? data;
 
   ProductDetailsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    message = json['message'];
+
     data = json['data'] != null ? new ProductDetailsData.fromJson(json['data']) : null;
   }
 }

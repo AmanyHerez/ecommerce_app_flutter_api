@@ -13,7 +13,7 @@ class TestingScreen extends StatelessWidget {
         children: [
           Center(
             child: ElevatedButton(onPressed: (){
-              DioHelper.dioHelper.getCategoryProduct();
+            //  DioHelper.dioHelper.getCategoryProduct();
             }, child: Text('category product')),
           )
           
