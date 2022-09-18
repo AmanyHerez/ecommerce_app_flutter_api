@@ -13,8 +13,8 @@ class TestingScreen extends StatelessWidget {
         children: [
           Center(
             child: ElevatedButton(onPressed: (){
-              DioHelper.dioHelper.AddToCart();
-            }, child: Text('add cart')),
+              DioHelper.dioHelper.getCategoryProduct();
+            }, child: Text('category product')),
           )
           
 
