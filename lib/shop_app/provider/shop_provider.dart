@@ -76,8 +76,8 @@ class ShopProvider extends ChangeNotifier {
   ///////////////////********category product**********//////////////////////
   CategoryProductModel? SelectedCategoryProduct;
   getCategoriesProduct(int id) async {
-    // SelectedCategoryProduct = null;
-    // notifyListeners();
+    SelectedCategoryProduct = null;
+    notifyListeners();
     SelectedCategoryProduct =
     await DioHelper.dioHelper.getCategoryProduct(id);
     notifyListeners();

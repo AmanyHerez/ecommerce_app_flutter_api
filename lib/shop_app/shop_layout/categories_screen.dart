@@ -21,7 +21,7 @@ class CategoriesScreen extends StatelessWidget {
                   InkWell(
                     onTap: (){
                       provider.getCategoriesProduct(provider.Categories[index].id!);
-                      AppRouter.NavigateToWidget(CategoryProductScreen());
+                      AppRouter.NavigateToWidget(CategoryProductScreen(provider.Categories[index].name));
                     },
                       child: bulidCatItem(provider.Categories[index])),
               separatorBuilder: (context, index) => Divider(
