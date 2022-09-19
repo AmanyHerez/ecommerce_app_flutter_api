@@ -136,15 +136,17 @@ class DioHelper {
   // }
   getCategoryProduct(int id) async {
     var url = Uri.parse(
-        ApiConstants.baseUrl + ApiConstants. CategoryproductEndPoint  + "$id");
+        ApiConstants.baseUrl + ApiConstants. CategoryproductEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Authorization':
       'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
-
+    Map<String, dynamic> mapQuery = {
+       'category_id':id,
+      };
     Response response =
-    await dio.get(url.toString(), options: Options(headers: mapHeaders));
+    await dio.get(url.toString(), options: Options(headers: mapHeaders),queryParameters: mapQuery);
       CategoryProductModel categoryProductModel =
       CategoryProductModel.fromJson(response.data);
 

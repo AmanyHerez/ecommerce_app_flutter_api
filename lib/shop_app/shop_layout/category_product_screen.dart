@@ -22,7 +22,7 @@ class CategoryProductScreen extends StatelessWidget {
                   height: 2,
                   color: Colors.grey,
                 ),
-                itemCount: 1),
+                itemCount: provider.SelectedCategoryProduct!.data!.data!.length),
           );
         },
 

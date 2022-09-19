@@ -77,34 +77,34 @@ class HomeScreen extends StatelessWidget {
 }
 
 Widget buliderWidget() => Column(
-      children: [
-        Consumer<ShopProvider>(
-          builder: (context, provider, child) {
-            return Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: GridView.count(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                crossAxisCount: 2,
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 10,
-                childAspectRatio: 1 / 1.75,
-                children: List.generate(
-                  provider.Products.length,
+  children: [
+    Consumer<ShopProvider>(
+      builder: (context, provider, child) {
+        return Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: GridView.count(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            crossAxisCount: 2,
+            crossAxisSpacing: 15,
+            mainAxisSpacing: 10,
+            childAspectRatio: 1 / 1.75,
+            children: List.generate(
+              provider.Products.length,
                   (index) => InkWell(
-                      onTap: (){
-                        provider.ProductDetails(provider.Products[index].id!);
-                        AppRouter.NavigateToWidget(ProductDetailsScreen());
-                      },
-                      child: buliderGridProduct(provider.Products[index])),
-                ),
-              ),
-            );
-          },
-        ),
-      ],
-    );
+                  onTap: (){
+                    provider.ProductDetails(provider.Products[index].id!);
+                    AppRouter.NavigateToWidget(ProductDetailsScreen());
+                  },
+                  child: buliderGridProduct(provider.Products[index])),
+            ),
+          ),
+        );
+      },
+    ),
+  ],
+);
 
 Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
   builder: (context, provider, child) {
@@ -116,27 +116,27 @@ Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
           Stack(
               alignment: AlignmentDirectional.bottomStart,
               children: [
-                  Image.network(
-                    model.image!,
-                    width: double.infinity,
-                    height: 210,
-                    //fit: BoxFit.cover,
-                  ),
+                Image.network(
+                  model.image!,
+                  width: double.infinity,
+                  height: 210,
+                  //fit: BoxFit.cover,
+                ),
                 if (model.discount != 0)
-                Container(
-                  color: Colors.red,
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Text(
-                      'Discount',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
+                  Container(
+                    color: Colors.red,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Text(
+                        'Discount',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
-                  ),
 
-                ),
+                  ),
               ]),
 
           Text(
@@ -189,29 +189,29 @@ Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
 );
 
 Widget buildCategoryItem(DataModel model) => Stack(
-      alignment: AlignmentDirectional.bottomCenter,
-      children: [
-        Image(
-          image: NetworkImage(model.image!),
-          width: 100,
-          height: 120,
-          fit: BoxFit.cover,
-        ),
-        Container(
-          color: Colors.black87.withOpacity(.8),
-          width: 100,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              model.name!,
-              style: TextStyle(
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
+  alignment: AlignmentDirectional.bottomCenter,
+  children: [
+    Image(
+      image: NetworkImage(model.image!),
+      width: 100,
+      height: 120,
+      fit: BoxFit.cover,
+    ),
+    Container(
+      color: Colors.black87.withOpacity(.8),
+      width: 100,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          model.name!,
+          style: TextStyle(
+            color: Colors.white,
           ),
-        )
-      ],
-    );
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+      ),
+    )
+  ],
+);
