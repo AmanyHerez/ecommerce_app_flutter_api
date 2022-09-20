@@ -31,6 +31,7 @@ class CategoryProductScreen extends StatelessWidget {
                     InkWell(
                       onTap: (){
                         provider.ProductDetails(provider.Products[index].id!);
+                        print(provider.Products[index].id!.toString());
                         AppRouter.NavigateToWidget(ProductDetailsScreen());
                       },
                         child: CategoryProductWidget(provider.SelectedCategoryProduct!.data!.data![index])),

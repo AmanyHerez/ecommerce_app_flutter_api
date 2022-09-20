@@ -2,6 +2,7 @@ import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
 import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/profile_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/widget/custome_textfield.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,17 @@ class SettingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Center(
+                child: CircleAvatar(radius: 60,
+                backgroundImage:
+                     NetworkImage(provider!.profileModel!.data!.image!),
+
+                ),
+              ),
+              Center(child: Text(provider!.profileModel!.data!.name!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),)),
+              Center(child: Text(provider!.profileModel!.data!.email!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),)),
+              SizedBox(height: 10,),
+              Divider(thickness: 2,),
               InkWell(
                 onTap: (){
                   AppRouter.NavigateToWidget(ProfileScreen());
@@ -37,7 +49,7 @@ class SettingScreen extends StatelessWidget {
 
               ),
               SizedBox(height: 10,),
-              Divider(thickness: 2,),
+
               Row(
                 children: [
                   Icon(provider.isDark ?Icons.brightness_2:Icons.wb_sunny,size: 30,

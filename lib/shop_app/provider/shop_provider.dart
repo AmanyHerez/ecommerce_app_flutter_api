@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 
 import '../models/category_product_model.dart';
 import '../models/change_favarite_model.dart';
+import '../models/faq_model.dart';
+import '../models/setting_model.dart';
 import '../shop_layout/Home_screen.dart';
 import '../shop_layout/categories_screen.dart';
 import '../shop_layout/favarite_screen.dart';
@@ -66,7 +68,7 @@ class ShopProvider extends ChangeNotifier {
     log(favarites.toString());
     notifyListeners();
   }
-/////////////*********************************/////////////////
+/////////////****************Categories*****************/////////////////
   getCategoriesData() async {
     CategoriesModel categoriesModel =
         await DioHelper.dioHelper.getCategoriesData();
@@ -82,7 +84,7 @@ class ShopProvider extends ChangeNotifier {
     await DioHelper.dioHelper.getCategoryProduct(id);
     notifyListeners();
   }
-  // /////////////////******************//////////////////////
+  // /////////////////******* changeFavorites***********//////////////////////
 
   ChangeFavoritesModel? changeFavoritesModel;
 
@@ -99,7 +101,7 @@ class ShopProvider extends ChangeNotifier {
 
     notifyListeners();
   }
-
+  // /////////////////******* Favorites***********//////////////////////
   FavoritesModel? favoritesModel;
 
   // List<FavoritesData> getFav=[];
@@ -147,6 +149,18 @@ class ShopProvider extends ChangeNotifier {
 
   Search(String text) async {
    searchModel = await DioHelper.dioHelper.Search(text);
+    notifyListeners();
+  }
+//////////////////////*******setting**********//////////////////////////
+  SettingsModel? settingsModel;
+  Setting() async {
+    searchModel = await DioHelper.dioHelper.getSettings();
+    notifyListeners();
+  }
+//////////////////////*******FQA**********//////////////////////////
+  FAQsModel? faQsModel;
+  FAQs() async {
+    faQsModel = await DioHelper.dioHelper.getFAQs();
     notifyListeners();
   }
 }

@@ -291,7 +291,7 @@ class DioHelper {
     return searchModel;
   }
 
-  /////////////////////*********faqs**********/////////////////////////
+  /////////////////////*********setting**********/////////////////////////
   getSettings() async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.settingsEndPoint);
     Map<String, dynamic> mapHeaders = {
@@ -307,6 +307,22 @@ class DioHelper {
     print(settingsModel.data!.about);
 
     return settingsModel;
+  }
+  /////////////////////*********FAQs **********/////////////////////////
+  getFAQs () async {
+    var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.faqsEndPoint);
+    Map<String, dynamic> mapHeaders = {
+      'lang': 'ar',
+      //'Content-Type': 'application/json',
+    };
+
+    Response response =
+    await dio.get(url.toString(), options: Options(headers: mapHeaders));
+    FAQsModel faQsModel  = FAQsModel.fromJson(response.data);
+    //print('Get FAQs ' + faqModel.status.toString());
+    print(faQsModel.status);
+
+    return faQsModel;
   }
   ////////////********************add cart & delete***********//////////
   AddToCart() async{
