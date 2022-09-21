@@ -1,6 +1,8 @@
 import 'package:final_gsg_app_flutter/shop_app/data/dio_helper.dart';
+import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:provider/provider.dart';
 
 class TestingScreen extends StatelessWidget {
   const TestingScreen({Key? key}) : super(key: key);
@@ -11,10 +13,15 @@ class TestingScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: ElevatedButton(onPressed: (){
-             DioHelper.dioHelper.getFAQs ();
-            }, child: Text('fqa')),
+          Consumer<ShopProvider>(builder: (context, provider, child) {
+            return  Center(
+              child: ElevatedButton(onPressed: (){
+                //DioHelper.dioHelper.getFAQs ();
+                provider.FAQs();
+              }, child: Text('fqa')),
+            );
+          },
+
           )
           
 

@@ -2,12 +2,14 @@ import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
 import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/profile_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/setting_screen.dart';
+import 'package:final_gsg_app_flutter/shop_app/shop_layout/update_profile_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/widget/custome_textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../data/dio_helper.dart';
+import 'faqs_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -36,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
               Divider(thickness: 2,),
               InkWell(
                 onTap: (){
-                  AppRouter.NavigateToWidget(ProfileScreen());
+                  AppRouter.NavigateToWidget(UpdateProfileScreen());
                 },
                 child: Row(
                  children: [
@@ -57,6 +59,19 @@ class ProfileScreen extends StatelessWidget {
                 child: ListTile(
                   leading: Icon(Icons.settings),
                   title: Text('Setting'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              SizedBox(height: 10,),
+              SizedBox(height: 10,),
+              InkWell(onTap: (){
+                provider.FAQs();
+                AppRouter.NavigateToWidget(FaqsScreen());
+              },
+
+                child: ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('FQA'),
                   trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ),

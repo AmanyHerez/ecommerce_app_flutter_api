@@ -312,7 +312,7 @@ class DioHelper {
   getFAQs () async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.faqsEndPoint);
     Map<String, dynamic> mapHeaders = {
-      'lang': 'ar',
+      'lang': 'en',
       //'Content-Type': 'application/json',
     };
 
@@ -321,6 +321,8 @@ class DioHelper {
     FAQsModel faQsModel  = FAQsModel.fromJson(response.data);
     //print('Get FAQs ' + faqModel.status.toString());
     print(faQsModel.status);
+    print(faQsModel.data!.total.toString());
+    print(faQsModel.data!.data![1].question);
 
     return faQsModel;
   }
