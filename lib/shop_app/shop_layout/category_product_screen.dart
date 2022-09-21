@@ -28,13 +28,7 @@ class CategoryProductScreen extends StatelessWidget {
             child: ListView.separated(
                 itemBuilder: (context, index) =>
 
-                    InkWell(
-                      onTap: (){
-                        provider.ProductDetails(provider.Products[index].id!);
-                        print(provider.Products[index].id!.toString());
-                        AppRouter.NavigateToWidget(ProductDetailsScreen());
-                      },
-                        child: CategoryProductWidget(provider.SelectedCategoryProduct!.data!.data![index])),
+                    CategoryProductWidget(provider.SelectedCategoryProduct!.data!.data![index]),
                 separatorBuilder: (context, index) => Divider(
                   height: 3,
                   color: Colors.grey,
@@ -50,102 +44,109 @@ class CategoryProductScreen extends StatelessWidget {
 
 Widget CategoryProductWidget(CategoryProductData model)=>
    Consumer<ShopProvider>(builder: (context, provider, child) {
-     return Padding(
-       padding: const EdgeInsets.all(8.0),
-       child: Container(
-         color: Colors.white,
-         height: 120,
-         child: Row(
-           children: [
-             Stack(alignment: AlignmentDirectional.bottomStart, children: [
-               Image(
-                 image: NetworkImage(model.image!),
-                 width: 120,
-                 height: 120,
-                 fit: BoxFit.cover,
-               ),
-               if (model.discount != 0)
-                 Container(
-                   color: Colors.red,
-                   child: Padding(
-                     padding: const EdgeInsets.all(2.0),
-                     child: Text(
-                       'Discount',
-                       style: TextStyle(
-                         color: Colors.white,
-                         fontSize: 10,
+     return InkWell(
+       onTap: (){
+         provider.ProductDetails(model.id!);
+         //print(provider.Products[index].id!.toString());
+         AppRouter.NavigateToWidget(ProductDetailsScreen());
+       },
+       child: Padding(
+         padding: const EdgeInsets.all(8.0),
+         child: Container(
+           color: Colors.white,
+           height: 120,
+           child: Row(
+             children: [
+               Stack(alignment: AlignmentDirectional.bottomStart, children: [
+                 Image(
+                   image: NetworkImage(model.image!),
+                   width: 120,
+                   height: 120,
+                   fit: BoxFit.cover,
+                 ),
+                 if (model.discount != 0)
+                   Container(
+                     color: Colors.red,
+                     child: Padding(
+                       padding: const EdgeInsets.all(2.0),
+                       child: Text(
+                         'Discount',
+                         style: TextStyle(
+                           color: Colors.white,
+                           fontSize: 10,
+                         ),
                        ),
                      ),
                    ),
-                 ),
-             ]),
-             SizedBox(
-               width: 20,
-             ),
-             Expanded(
-               child: Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text(
-                       model.name!,
-                       maxLines: 4,
-                       style: TextStyle(
+               ]),
+               SizedBox(
+                 width: 20,
+               ),
+               Expanded(
+                 child: Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+                       Text(
+                         model.name!,
+                         maxLines: 4,
+                         style: TextStyle(
 
-                         //fontSize: 14,
+                           //fontSize: 14,
+                         ),
+
+
                        ),
-
-
-                     ),
-                     Spacer(),
-                     Row(
-                       children: [
-                         Text(
-                           model.price.toString(),
-                           style: TextStyle(
-                             fontSize: 14,
-                             height: 1.3,
-                           ),
-                         ),
-                         SizedBox(
-                           width: 5,
-                         ),
-                         if (model.discount != 0)
+                       Spacer(),
+                       Row(
+                         children: [
                            Text(
-                             model.oldPrice.toString(),
+                             model.price.toString(),
                              style: TextStyle(
-                               fontSize: 10,
-                               color: Colors.grey,
-                               decoration: TextDecoration.lineThrough,
+                               fontSize: 14,
+                               height: 1.3,
                              ),
                            ),
-                         Spacer(),
-                         CircleAvatar(
-                           radius: 15,
-                           backgroundColor:
-                           provider.favarites![model.id] == true
-                               ? Colors.red
-                               : Colors.grey,
-                           child: IconButton(
-                               onPressed: () {
-                                 //print(provider.favarites.toString());
+                           SizedBox(
+                             width: 5,
+                           ),
+                           if (model.discount != 0)
+                             Text(
+                               model.oldPrice.toString(),
+                               style: TextStyle(
+                                 fontSize: 10,
+                                 color: Colors.grey,
+                                 decoration: TextDecoration.lineThrough,
+                               ),
+                             ),
+                           Spacer(),
+                           CircleAvatar(
+                             radius: 15,
+                             backgroundColor:
+                             provider.favarites![model.id] == true
+                                 ? Colors.red
+                                 : Colors.grey,
+                             child: IconButton(
+                                 onPressed: () {
+                                   //print(provider.favarites.toString());
 
-                                 provider.ChangeFavorites(model.id!);
-                               },
-                               icon: Icon(
-                                 Icons.favorite,
-                                 size: 14,
-                                 color: Colors.white,
-                               )),
-                         )
-                       ],
-                     ),
-                   ],
+                                   provider.ChangeFavorites(model.id!);
+                                 },
+                                 icon: Icon(
+                                   Icons.favorite,
+                                   size: 14,
+                                   color: Colors.white,
+                                 )),
+                           )
+                         ],
+                       ),
+                     ],
+                   ),
                  ),
-               ),
-             )
-           ],
+               )
+             ],
+           ),
          ),
        ),
      );

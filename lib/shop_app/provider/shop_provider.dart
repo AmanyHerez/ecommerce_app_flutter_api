@@ -19,7 +19,8 @@ import '../models/setting_model.dart';
 import '../shop_layout/Home_screen.dart';
 import '../shop_layout/categories_screen.dart';
 import '../shop_layout/favarite_screen.dart';
-import '../shop_layout/setting_screen.dart';
+import '../shop_layout/profile_screen.dart';
+
 
 class ShopProvider extends ChangeNotifier {
   ShopProvider() {
@@ -37,7 +38,7 @@ class ShopProvider extends ChangeNotifier {
     HomeScreen(),
     CategoriesScreen(),
     FavariteScreen(),
-    SettingScreen(),
+    ProfileScreen(),
   ];
 
   chagebottomNavigationBar(int index) {

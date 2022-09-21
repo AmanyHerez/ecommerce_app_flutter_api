@@ -1,78 +1,92 @@
+import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
+import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
+import 'package:final_gsg_app_flutter/shop_app/shop_layout/profile_screen.dart';
+import 'package:final_gsg_app_flutter/shop_app/shop_layout/setting_screen.dart';
+import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/widget/custome_textfield.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/shop_provider.dart';
-import '../view/auth_screen/widget/custome_textfield.dart';
-import '../view/auth_screen/widget/default_text_field.dart';
+import '../data/dio_helper.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('profile',style: TextStyle(color: Colors.black),),elevation: 0,
-      backgroundColor: Colors.transparent,
-      iconTheme: IconThemeData(
-        color: Colors.black
-      ),),
-      body: Consumer<ShopProvider>(
+    return Consumer<ShopProvider>(
 
-        builder: (context, provider, child) {
-          var model=provider.profileModel;
-          provider.nameProfileController.text  = model!.data!.name!;
-          provider.emailProfileController.text=model.data!.email!;
-          provider.phoneProfileController.text=model.data!.phone!;
-          return Form(
-            key: provider.profileKey,
-            child:provider.profileModel==null?Center(child: CircularProgressIndicator()): Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-              child: Column(
+      builder: (context, provider, child) {
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: CircleAvatar(radius: 60,
+                backgroundImage:
+                     NetworkImage(provider!.profileModel!.data!.image!),
+
+                ),
+              ),
+              Center(child: Text(provider!.profileModel!.data!.name!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),)),
+              Center(child: Text(provider!.profileModel!.data!.email!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),)),
+              SizedBox(height: 10,),
+              Divider(thickness: 2,),
+              InkWell(
+                onTap: (){
+                  AppRouter.NavigateToWidget(ProfileScreen());
+                },
+                child: Row(
+                 children: [
+                   Icon(Icons.person,size: 30,),
+                   Text('Profile',style: TextStyle(
+
+                     fontSize: 25,
+                   ),),
+                 ],
+                ),
+
+              ),
+              SizedBox(height: 10,),
+              InkWell(onTap: (){
+        AppRouter.NavigateToWidget(SettingScreen());
+        },
+
+                child: ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Setting'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              SizedBox(height: 10,),
+
+              Row(
                 children: [
-                  DefaultTextField(
-                    validator: (String value) {
-                      if(value.isEmpty){
-                        return 'name must not be empty ';
-                      }
-                      return null;
-                    },
-                    controller: provider.nameProfileController,
-                    title: 'name',
-                  ),
-                  SizedBox(height: 20,),
-                  DefaultTextField(
-                    validator: (String value) {
-                      if(value.isEmpty){
-                        return 'email must not be empty ';
-                      }
-                      return null;
-                    },
-                    controller: provider.emailProfileController,
-                    title: 'email',
-                  ),
-                  SizedBox(height: 20,),
-                  DefaultTextField(
-                    validator: (String value) {
-                      if(value.isEmpty){
-                        return 'phone must not be empty ';
-                      }
-                      return null;
-                    },
-                    controller: provider.phoneProfileController,
-                    title: 'phone',
-                  ),
-                  SizedBox(height: 20,),
-                  // ElevatedButton(onPressed: (){
-                  //   // if(provider.profileKey.currentState!.validate()){
-                  //   //   provider.updateUserData();
-                  //   // }
-                  // }, child: Text('update')),
+                  Icon(provider.isDark ?Icons.brightness_2:Icons.wb_sunny,size: 30,
+                    color: provider.isDark ?Colors.white:Colors.amber,),
+                  Expanded(
+                    child: SwitchListTile(
+                        title: provider.isDark ?Text('dark mode',style: TextStyle(
 
+                          fontSize: 25,
+                        ),):Text('light mode',style: TextStyle(
+
+                          fontSize: 25,
+                        ),),
+                        value: provider.isDark, onChanged: (value){
+                      provider.changeThemaMode(value);
+
+                    }),
+                  ),
                 ],
               ),
-            ),
-          );
-        },
-      ),
+
+            ],
+          ),
+        );
+      },
     );
   }
 }

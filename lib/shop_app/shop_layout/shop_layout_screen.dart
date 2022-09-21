@@ -7,7 +7,7 @@ import 'package:final_gsg_app_flutter/shop_app/shop_layout/Home_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/categories_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/favarite_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/search_screen.dart';
-import 'package:final_gsg_app_flutter/shop_app/shop_layout/setting_screen.dart';
+
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +37,7 @@ class ShopLayout extends StatelessWidget {
               BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home ',),
               BottomNavigationBarItem(icon: Icon(Icons.category),label: 'Categories ',),
               BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined),label: 'Favorite ',),
-              BottomNavigationBarItem(icon: Icon(Icons.settings),label: ' Settings',),
+              BottomNavigationBarItem(icon: Icon(Icons.person),label: ' profile',),
             ],
           ),
         );

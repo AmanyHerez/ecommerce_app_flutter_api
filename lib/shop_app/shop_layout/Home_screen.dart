@@ -206,10 +206,11 @@ Widget buildCategoryItem(DataModel model) => Container(
         children: [
           Image(
             image: NetworkImage(model.image!),
-            width: 100,
-            height: 120,
+            width: 90,
+            height: 110,
             fit: BoxFit.cover,
           ),
+          SizedBox(height: 10,),
           Text(
             model.name!,
             style: TextStyle(
