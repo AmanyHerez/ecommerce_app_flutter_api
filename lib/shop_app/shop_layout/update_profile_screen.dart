@@ -10,7 +10,7 @@ class UpdateProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('profile',style: TextStyle(color: Colors.black),),elevation: 0,
+      appBar: AppBar(title: Text('edit profile',style: TextStyle(color: Colors.black),),elevation: 0,
       backgroundColor: Colors.transparent,
       iconTheme: IconThemeData(
         color: Colors.black
@@ -62,9 +62,9 @@ class UpdateProfileScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20,),
                   // ElevatedButton(onPressed: (){
-                  //   // if(provider.profileKey.currentState!.validate()){
-                  //   //   provider.updateUserData();
-                  //   // }
+                  //   if(provider.profileKey.currentState!.validate()){
+                  //     provider.updateUserData();
+                  //   }
                   // }, child: Text('update')),
 
                 ],

@@ -1,8 +1,10 @@
+import 'package:final_gsg_app_flutter/shop_app/data/sp_helper.dart';
 import 'package:final_gsg_app_flutter/shop_app/provider/shop_provider.dart';
 import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/profile_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/setting_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/shop_layout/update_profile_screen.dart';
+import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/widget/custome_textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +27,21 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: CircleAvatar(radius: 60,
-                backgroundImage:
-                     NetworkImage(provider!.profileModel!.data!.image!),
+              Stack(
+                alignment: AlignmentDirectional.bottomCenter,
+                children:[
+                  Container( width: double.infinity,
+                    color: Colors.orange,
+                    height: 200,),
+                  Positioned(
+                    bottom: -30,
+                    child: CircleAvatar(radius: 60,
+                      backgroundImage:
+                      NetworkImage(provider!.profileModel!.data!.image!),
 
-                ),
+                    ),
+                  ),
+                ]
               ),
               Center(child: Text(provider!.profileModel!.data!.name!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),)),
               Center(child: Text(provider!.profileModel!.data!.email!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),)),
@@ -53,12 +64,13 @@ class ProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: 10,),
               InkWell(onTap: (){
+              provider.Setting();
         AppRouter.NavigateToWidget(SettingScreen());
         },
 
                 child: ListTile(
                   leading: Icon(Icons.settings),
-                  title: Text('Setting'),
+                  title: Text('Setting',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                   trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ),
@@ -71,7 +83,7 @@ class ProfileScreen extends StatelessWidget {
 
                 child: ListTile(
                   leading: Icon(Icons.settings),
-                  title: Text('FQA'),
+                  title: Text('FQA',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                   trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ),
@@ -96,6 +108,18 @@ class ProfileScreen extends StatelessWidget {
                     }),
                   ),
                 ],
+              ),
+              SizedBox(height: 10,),
+              InkWell(onTap: (){
+                SpHelper.spHelper.deleteToken();
+                AppRouter.NavigateWithReplacemtnToWidget(LoginScreen());
+              },
+
+                child: ListTile(
+                  leading: Icon(Icons.login_outlined),
+                  title: Text('Logout',style: TextStyle(fontSize: 20),),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
               ),
 
             ],

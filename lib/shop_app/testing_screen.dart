@@ -17,8 +17,8 @@ class TestingScreen extends StatelessWidget {
             return  Center(
               child: ElevatedButton(onPressed: (){
                 //DioHelper.dioHelper.getFAQs ();
-                provider.FAQs();
-              }, child: Text('fqa')),
+                provider.Setting();
+              }, child: Text('setting')),
             );
           },
 

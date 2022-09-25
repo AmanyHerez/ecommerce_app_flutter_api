@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
             theme: provider.isDark ?ThemeData.dark():ThemeData.light(),
 
 
-            home:ShopLayout(),
+            home:LoginScreen(),
           );
         },
 

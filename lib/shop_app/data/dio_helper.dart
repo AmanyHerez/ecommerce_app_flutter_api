@@ -82,9 +82,9 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-      // 'Authorization':'${SpHelper.spHelper.getToken()} '
-      'Authorization':
-          'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
+      'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      //     'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
 
     Response response =
@@ -139,8 +139,9 @@ class DioHelper {
         ApiConstants.baseUrl + ApiConstants. CategoryproductEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
-      'Authorization':
-      'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
+      'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      // 'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
     Map<String, dynamic> mapQuery = {
        'category_id':id,
@@ -161,8 +162,9 @@ class DioHelper {
         ApiConstants.baseUrl + ApiConstants.productDetailsEndPoint + "$id");
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
-      'Authorization':
-          'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
+    'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      //     'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
 
     Response response =
@@ -182,9 +184,9 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-      // 'Authorization':'${SpHelper.spHelper.getToken()} '
-      'Authorization':
-          '3mJAj2csMpQfNDWgNyamCI1c5ghU9iOapQJUz8zV5uBtRx6sl9rIfWRMhsQx3fnQesq3C7'
+       'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      //     '3mJAj2csMpQfNDWgNyamCI1c5ghU9iOapQJUz8zV5uBtRx6sl9rIfWRMhsQx3fnQesq3C7'
     };
     Map<String, dynamic> mapData = {
       'product_id': productId,
@@ -205,9 +207,9 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-      // 'Authorization':'${SpHelper.spHelper.getToken()} '
-      'Authorization':
-          'MsBbAUSmykMklVsbxN9CE2uq0tCnuWofNhZr6UsLr3B5ho8b5TjEMobZ0g8wkqieh6UYeP'
+       'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      //     'MsBbAUSmykMklVsbxN9CE2uq0tCnuWofNhZr6UsLr3B5ho8b5TjEMobZ0g8wkqieh6UYeP'
     };
 
     Response response =
@@ -226,8 +228,9 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-      'Authorization':
-          'MEzM2zbFKrfA8Y99v2XhXdSgY06M1i5mV5lqUmB1uq9WPhOLmRRvkCrDi8rvXaicdSOKfw'
+    'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      //     'MEzM2zbFKrfA8Y99v2XhXdSgY06M1i5mV5lqUmB1uq9WPhOLmRRvkCrDi8rvXaicdSOKfw'
     };
 
     Response response =
@@ -246,8 +249,9 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-      'Authorization':
-          'JPDMBsWT6LOdjjwM8I3xhdUkjAHgCqP2r61uakOiBcwHkr6AUpk9ubECYwlahWlTX0NMC4'
+    'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      //     'JPDMBsWT6LOdjjwM8I3xhdUkjAHgCqP2r61uakOiBcwHkr6AUpk9ubECYwlahWlTX0NMC4'
     };
     Map<String, dynamic> mapData = {
       'name': name,
@@ -273,9 +277,9 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-      // 'Authorization':'${SpHelper.spHelper.getToken()} '
-      'Authorization':
-          'kiJezAsbXXrIpBf45FdagfiD79nnC36baWhBbogmqQ0WYlpD0ZQN9vJ2UroldItUnbnmMx'
+      'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      //     'kiJezAsbXXrIpBf45FdagfiD79nnC36baWhBbogmqQ0WYlpD0ZQN9vJ2UroldItUnbnmMx'
     };
     Map<String, dynamic> mapData = {
       'text': text,
@@ -295,7 +299,7 @@ class DioHelper {
   getSettings() async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.settingsEndPoint);
     Map<String, dynamic> mapHeaders = {
-      'lang': 'ar',
+      'lang': 'en',
       //'Content-Type': 'application/json',
     };
 
@@ -332,9 +336,9 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'ar',
       'Content-Type': 'application/json',
-      // 'Authorization':'${SpHelper.spHelper.getToken()} '
-      'Authorization':
-      'DszarskqPhHmuZrBEhfeFTWmMV7tL875Ef1CSRVLnoQQkkzSpFE22lq1GYJHu3EZMsR8ZO'
+      'Authorization':'${SpHelper.spHelper.getToken()} '
+      // 'Authorization':
+      // 'DszarskqPhHmuZrBEhfeFTWmMV7tL875Ef1CSRVLnoQQkkzSpFE22lq1GYJHu3EZMsR8ZO'
 
     };
     Map<String,dynamic> mapData={

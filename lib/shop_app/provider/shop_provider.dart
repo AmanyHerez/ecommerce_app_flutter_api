@@ -155,7 +155,7 @@ class ShopProvider extends ChangeNotifier {
 //////////////////////*******setting**********//////////////////////////
   SettingsModel? settingsModel;
   Setting() async {
-    searchModel = await DioHelper.dioHelper.getSettings();
+    settingsModel = await DioHelper.dioHelper.getSettings();
     notifyListeners();
   }
 //////////////////////*******FQA**********//////////////////////////

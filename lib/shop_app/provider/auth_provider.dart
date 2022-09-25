@@ -28,7 +28,7 @@ class AuthProvider extends ChangeNotifier {
       emailController.text,
       passwordController.text,
     );
-    //SpHelper.spHelper.SaveToken(token);
+    SpHelper.spHelper.SaveToken(token);
 
     log(" token :${token}");
   }

@@ -27,10 +27,10 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Center(
                           child: Image.asset(
-                        'asset/image/logo.png',
-                        width: 157,
-                        height: 109,
-                      )),
+                            'asset/image/logo.png',
+                            width: 157,
+                            height: 109,
+                          )),
                       SizedBox(
                         height: 20,
                       ),
@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () async {
                             // DioHelper.dioHelper.login( provider.emailController.text,
                             //   provider. passwordController.text,);
-                           await provider.login();
+                            await provider.login();
 
                             AppRouter.NavigateWithReplacemtnToWidget(ShopLayout());
                           },
