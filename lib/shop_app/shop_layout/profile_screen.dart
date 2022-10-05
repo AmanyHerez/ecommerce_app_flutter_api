@@ -19,109 +19,181 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ShopProvider>(
-
       builder: (context, provider, child) {
-
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: ListView(
+            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
-                alignment: AlignmentDirectional.bottomCenter,
-                children:[
-                  Container( width: double.infinity,
-                    color: Colors.orange,
-                    height: 200,),
-                  Positioned(
-                    bottom: -30,
-                    child: CircleAvatar(radius: 60,
-                      backgroundImage:
-                      NetworkImage(provider!.profileModel!.data!.image!),
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom: 200 / 2),
 
+                      child: Container(
+                        width: double.infinity,
+
+                        height: 280,
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(20),
+
+                        ),
+                      ),
                     ),
-                  ),
-                ]
+                    Positioned(
+                      top: 280 - 144 / 2,
+                      child: Container(
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(100),
+                            border: Border.all(
+                              color:Colors.white,
+                              width: 10,
+                            )
+                           ),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 150 / 2,
+                          backgroundImage: NetworkImage(
+                              provider!.profileModel!.data!.image!),
+                        ),
+                      ),
+                    ),
+                  ]),
+              Center(
+                  child: Text(
+                provider!.profileModel!.data!.name!,
+                style: TextStyle(
+                  fontSize: 28,
+                ),
+              )),
+              SizedBox(
+                height: 10,
               ),
-              Center(child: Text(provider!.profileModel!.data!.name!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),)),
-              Center(child: Text(provider!.profileModel!.data!.email!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,),)),
-              SizedBox(height: 10,),
-              Divider(thickness: 2,),
+              Center(
+                  child: Text(
+                provider!.profileModel!.data!.email!,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                ),
+              )),
+              SizedBox(
+                height: 10,
+              ),
+              Divider(
+                thickness: 2,
+              ),
               InkWell(
-                onTap: (){
+                onTap: () {
                   AppRouter.NavigateToWidget(UpdateProfileScreen());
                 },
                 child: Row(
-                 children: [
-                   Icon(Icons.person,size: 30,),
-                   Text('Profile',style: TextStyle(
-
-                     fontSize: 25,
-                   ),),
-                 ],
+                  children: [
+                    Icon(
+                      Icons.person,
+                      size: 30,
+                    ),
+                    Text(
+                      'Profile',
+                      style: TextStyle(
+                        fontSize: 25,
+                      ),
+                    ),
+                  ],
                 ),
-
               ),
-              SizedBox(height: 10,),
-              InkWell(onTap: (){
-              provider.Setting();
-        AppRouter.NavigateToWidget(SettingScreen());
-        },
-
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  provider.Setting();
+                  AppRouter.NavigateToWidget(SettingScreen());
+                },
                 child: ListTile(
                   leading: Icon(Icons.settings),
-                  title: Text('Setting',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  title: Text(
+                    'Setting',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                   trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ),
-              SizedBox(height: 10,),
-              SizedBox(height: 10,),
-              InkWell(onTap: (){
-                provider.FAQs();
-                AppRouter.NavigateToWidget(FaqsScreen());
-              },
-
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  provider.FAQs();
+                  AppRouter.NavigateToWidget(FaqsScreen());
+                },
                 child: ListTile(
                   leading: Icon(Icons.settings),
-                  title: Text('FQA',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  title: Text(
+                    'FQA',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                   trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ),
-              SizedBox(height: 10,),
-
+              SizedBox(
+                height: 10,
+              ),
               Row(
                 children: [
-                  Icon(provider.isDark ?Icons.brightness_2:Icons.wb_sunny,size: 30,
-                    color: provider.isDark ?Colors.white:Colors.amber,),
+                  Icon(
+                    provider.isDark ? Icons.brightness_2 : Icons.wb_sunny,
+                    size: 30,
+                    color: provider.isDark ? Colors.white : Colors.amber,
+                  ),
                   Expanded(
                     child: SwitchListTile(
-                        title: provider.isDark ?Text('dark mode',style: TextStyle(
-
-                          fontSize: 25,
-                        ),):Text('light mode',style: TextStyle(
-
-                          fontSize: 25,
-                        ),),
-                        value: provider.isDark, onChanged: (value){
-                      provider.changeThemaMode(value);
-
-                    }),
+                        title: provider.isDark
+                            ? Text(
+                                'dark mode',
+                                style: TextStyle(
+                                  fontSize: 25,
+                                ),
+                              )
+                            : Text(
+                                'light mode',
+                                style: TextStyle(
+                                  fontSize: 25,
+                                ),
+                              ),
+                        value: provider.isDark,
+                        onChanged: (value) {
+                          provider.changeThemaMode(value);
+                        }),
                   ),
                 ],
               ),
-              SizedBox(height: 10,),
-              InkWell(onTap: (){
-                SpHelper.spHelper.deleteToken();
-                AppRouter.NavigateWithReplacemtnToWidget(LoginScreen());
-              },
-
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  SpHelper.spHelper.deleteToken();
+                  AppRouter.NavigateWithReplacemtnToWidget(LoginScreen());
+                },
                 child: ListTile(
                   leading: Icon(Icons.login_outlined),
-                  title: Text('Logout',style: TextStyle(fontSize: 20),),
+                  title: Text(
+                    'Logout',
+                    style: TextStyle(fontSize: 20),
+                  ),
                   trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ),
-
             ],
           ),
         );

@@ -9,7 +9,6 @@ import 'package:final_gsg_app_flutter/shop_app/models/favorite_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/home_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/login_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/search_model.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../models/category_product_model.dart';
 import '../models/change_favarite_model.dart';
@@ -82,7 +81,7 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-      'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       //     'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
@@ -111,6 +110,7 @@ class DioHelper {
     //print(categoriesModel.data!.data![0]);
     return categoriesModel;
   }
+
   //////////////////////////**********category product******////////////////////////////
   // getCategoryProduct() async {
   //   var url = Uri.parse(
@@ -135,34 +135,35 @@ class DioHelper {
   //   return categoryProductModel;
   // }
   getCategoryProduct(int id) async {
-    var url = Uri.parse(
-        ApiConstants.baseUrl + ApiConstants. CategoryproductEndPoint);
+    var url =
+        Uri.parse(ApiConstants.baseUrl + ApiConstants.CategoryproductEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
-      'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       // 'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
     Map<String, dynamic> mapQuery = {
-       'category_id':id,
-      };
-    Response response =
-    await dio.get(url.toString(), options: Options(headers: mapHeaders),queryParameters: mapQuery);
-      CategoryProductModel categoryProductModel =
-      CategoryProductModel.fromJson(response.data);
+      'category_id': id,
+    };
+    Response response = await dio.get(url.toString(),
+        options: Options(headers: mapHeaders), queryParameters: mapQuery);
+    CategoryProductModel categoryProductModel =
+        CategoryProductModel.fromJson(response.data);
 
-      print(categoryProductModel.status);
-      //print(categoryProductModel.data!.total);
+    print(categoryProductModel.status);
+    //print(categoryProductModel.data!.total);
 
-      return categoryProductModel;
+    return categoryProductModel;
   }
+
   //////////////////////////**********product Details******////////////////////////////
   ProductDetails(int id) async {
     var url = Uri.parse(
         ApiConstants.baseUrl + ApiConstants.productDetailsEndPoint + "$id");
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
-    'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       //     'b676yF4HQTAGtP9bYNM2kjAw3VZ6vd63Ar7dr7jQvhISokVKIK5K3Emr4tiPctOBgBlZhV'
     };
@@ -184,7 +185,7 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-       'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       //     '3mJAj2csMpQfNDWgNyamCI1c5ghU9iOapQJUz8zV5uBtRx6sl9rIfWRMhsQx3fnQesq3C7'
     };
@@ -207,7 +208,7 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-       'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       //     'MsBbAUSmykMklVsbxN9CE2uq0tCnuWofNhZr6UsLr3B5ho8b5TjEMobZ0g8wkqieh6UYeP'
     };
@@ -228,7 +229,7 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-    'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       //     'MEzM2zbFKrfA8Y99v2XhXdSgY06M1i5mV5lqUmB1uq9WPhOLmRRvkCrDi8rvXaicdSOKfw'
     };
@@ -249,13 +250,13 @@ class DioHelper {
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-    'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       //     'JPDMBsWT6LOdjjwM8I3xhdUkjAHgCqP2r61uakOiBcwHkr6AUpk9ubECYwlahWlTX0NMC4'
     };
     Map<String, dynamic> mapData = {
       'name': name,
-      'password': email,
+      'email': email,
       'phone': phone,
     };
 
@@ -266,18 +267,53 @@ class DioHelper {
     );
     LoginModel userModel = LoginModel.fromJson(response.data);
 
+    print(userModel.message);
+
+    print(userModel.data?.email);
     print(userModel.data?.name);
+    print(userModel.data?.phone);
 
     return userModel;
   }
 
+  // UpdateUserData() async {
+  //   var url =
+  //   Uri.parse(ApiConstants.baseUrl + ApiConstants.updateProfileEndPoint);
+  //   Map<String, dynamic> mapHeaders = {
+  //     'lang': 'en',
+  //     'Content-Type': 'application/json',
+  //     'Authorization':'${SpHelper.spHelper.getToken()} '
+  //     // 'Authorization':
+  //     //     'JPDMBsWT6LOdjjwM8I3xhdUkjAHgCqP2r61uakOiBcwHkr6AUpk9ubECYwlahWlTX0NMC4'
+  //   };
+  //   Map<String, dynamic> mapData = {
+  //     'email':'amanyH@gmail.com',
+  //     'name': 'Amany Amany Herez',
+  //     'password': 'AmanyH@gmail.com',
+  //     'phone': '0592427427',
+  //   };
+  //
+  //   Response response = await dio.put(
+  //     url.toString(),
+  //     options: Options(headers: mapHeaders),
+  //     data: mapData,
+  //   );
+  //   LoginModel userModel = LoginModel.fromJson(response.data);
+  //
+  //   print(userModel.message);
+  //   print(userModel.data?.name);
+  //   print(userModel.data?.email);
+  //
+  //
+  //   return userModel;
+  // }
 ////////////////*****************Search**************/////////////////////////
   Search(String text) async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.searchEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
       'Content-Type': 'application/json',
-      'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       //     'kiJezAsbXXrIpBf45FdagfiD79nnC36baWhBbogmqQ0WYlpD0ZQN9vJ2UroldItUnbnmMx'
     };
@@ -305,15 +341,16 @@ class DioHelper {
 
     Response response =
         await dio.get(url.toString(), options: Options(headers: mapHeaders));
-    SettingsModel settingsModel  = SettingsModel.fromJson(response.data);
+    SettingsModel settingsModel = SettingsModel.fromJson(response.data);
     //print('Get FAQs ' + faqModel.status.toString());
     print(settingsModel.status);
     print(settingsModel.data!.about);
 
     return settingsModel;
   }
+
   /////////////////////*********FAQs **********/////////////////////////
-  getFAQs () async {
+  getFAQs() async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.faqsEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'en',
@@ -321,8 +358,8 @@ class DioHelper {
     };
 
     Response response =
-    await dio.get(url.toString(), options: Options(headers: mapHeaders));
-    FAQsModel faQsModel  = FAQsModel.fromJson(response.data);
+        await dio.get(url.toString(), options: Options(headers: mapHeaders));
+    FAQsModel faQsModel = FAQsModel.fromJson(response.data);
     //print('Get FAQs ' + faqModel.status.toString());
     print(faQsModel.status);
     print(faQsModel.data!.total.toString());
@@ -330,27 +367,30 @@ class DioHelper {
 
     return faQsModel;
   }
+
   ////////////********************add cart & delete***********//////////
-  AddToCart() async{
-    var url=Uri.parse(ApiConstants.baseUrl+ApiConstants.cartsEndPoint);
+  AddToCart() async {
+    var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.cartsEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'ar',
       'Content-Type': 'application/json',
-      'Authorization':'${SpHelper.spHelper.getToken()} '
+      'Authorization': '${SpHelper.spHelper.getToken()} '
       // 'Authorization':
       // 'DszarskqPhHmuZrBEhfeFTWmMV7tL875Ef1CSRVLnoQQkkzSpFE22lq1GYJHu3EZMsR8ZO'
-
     };
-    Map<String,dynamic> mapData={
-      'product_id':53,
+    Map<String, dynamic> mapData = {
+      'product_id': 53,
     };
-    Response response=await dio.post(url.toString(),options: Options(headers: mapHeaders,),data: mapData);
-    AddCartModel addCartModel= AddCartModel.fromJson(response.data);
+    Response response = await dio.post(url.toString(),
+        options: Options(
+          headers: mapHeaders,
+        ),
+        data: mapData);
+    AddCartModel addCartModel = AddCartModel.fromJson(response.data);
     log("cart");
     log(addCartModel.status.toString());
     log(addCartModel.message!);
     log(addCartModel.data!.product!.name!);
     return addCartModel;
-
   }
 }

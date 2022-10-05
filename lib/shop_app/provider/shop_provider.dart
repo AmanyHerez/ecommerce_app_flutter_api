@@ -135,11 +135,9 @@ class ShopProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateUserData() async {
+  updateUserData(String name, String email, String phone) async {
     profileModel = await DioHelper.dioHelper.UpdateUserData(
-        nameProfileController.text,
-        emailProfileController.text,
-        phoneProfileController.text);
+        name,email, phone);
     notifyListeners();
   }
 
