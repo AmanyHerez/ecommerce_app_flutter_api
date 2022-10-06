@@ -369,17 +369,15 @@ class DioHelper {
   }
 
   ////////////********************add cart & delete***********//////////
-  AddToCart() async {
+  AddToCart(int productId) async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.cartsEndPoint);
     Map<String, dynamic> mapHeaders = {
       'lang': 'ar',
       'Content-Type': 'application/json',
       'Authorization': '${SpHelper.spHelper.getToken()} '
-      // 'Authorization':
-      // 'DszarskqPhHmuZrBEhfeFTWmMV7tL875Ef1CSRVLnoQQkkzSpFE22lq1GYJHu3EZMsR8ZO'
     };
     Map<String, dynamic> mapData = {
-      'product_id': 53,
+      'product_id': productId,
     };
     Response response = await dio.post(url.toString(),
         options: Options(

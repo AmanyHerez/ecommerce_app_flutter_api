@@ -191,6 +191,22 @@ Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
                           size: 14,
                           color: Colors.white,
                         )),
+                  ),
+                  CircleAvatar(
+                    radius: 15,
+                    backgroundColor: provider.cart![model.id!] == true
+                        ? Colors.green.shade400
+                        : Colors.grey,
+                    child: IconButton(
+                        onPressed: () {
+                          //print(provider.favarites.toString());
+                          provider.AddOrDeleteFromCart(model.id!);
+                        },
+                        icon: Icon(
+                          Icons.shopping_cart,
+                          size: 14,
+                          color: Colors.white,
+                        )),
                   )
                 ],
               ),

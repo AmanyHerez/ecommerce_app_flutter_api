@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:final_gsg_app_flutter/shop_app/data/dio_helper.dart';
 import 'package:final_gsg_app_flutter/shop_app/data/sp_helper.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/categories_model.dart';
@@ -12,6 +13,7 @@ import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../models/add_cart_model.dart';
 import '../models/category_product_model.dart';
 import '../models/change_favarite_model.dart';
 import '../models/faq_model.dart';
@@ -56,6 +58,7 @@ class ShopProvider extends ChangeNotifier {
   List<ProductsModel> Products = [];
   List<DataModel> Categories = [];
   Map<int, bool> favarites = {};
+  Map<int, bool> cart = {};
 
   getHomeData() async {
     HomeModel homeModel = await DioHelper.dioHelper.getHomeData();
@@ -66,7 +69,15 @@ class ShopProvider extends ChangeNotifier {
         element.id!: element.inFavorites!,
       });
     });
+    homeModel.data!.products!.forEach((element) {
+      cart.addAll({
+        element.id!: element.inCart!,
+      });
+    });
+    log("favarites");
     log(favarites.toString());
+    log("cart");
+    log(cart.toString());
     notifyListeners();
   }
 /////////////****************Categories*****************/////////////////
@@ -112,7 +123,13 @@ class ShopProvider extends ChangeNotifier {
 
     notifyListeners();
   }
-
+  ////////////////////////////add and delete cart/////
+  AddCartModel? addCartModel;
+  AddOrDeleteFromCart(int productId)async{
+    cart[productId] = !cart[productId!]!;
+    addCartModel= await DioHelper.dioHelper.AddToCart(productId);
+    notifyListeners();
+  }
   /////////////////////////*****product Details*******/////////////////////////
   ProductDetailsModel? selectedProduct;
 
