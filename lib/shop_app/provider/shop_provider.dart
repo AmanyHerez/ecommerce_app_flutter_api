@@ -10,6 +10,7 @@ import 'package:final_gsg_app_flutter/shop_app/models/login_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/product_details_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/models/search_model.dart';
 import 'package:final_gsg_app_flutter/shop_app/router/router.dart';
+import 'package:final_gsg_app_flutter/shop_app/shop_layout/cart_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ import '../models/add_cart_model.dart';
 import '../models/category_product_model.dart';
 import '../models/change_favarite_model.dart';
 import '../models/faq_model.dart';
+import '../models/get_cart.dart';
 import '../models/setting_model.dart';
 import '../shop_layout/Home_screen.dart';
 import '../shop_layout/categories_screen.dart';
@@ -39,6 +41,7 @@ class ShopProvider extends ChangeNotifier {
   List<Widget> BnScreen = [
     HomeScreen(),
     CategoriesScreen(),
+    CartScreen(),
     FavariteScreen(),
     ProfileScreen(),
   ];
@@ -123,11 +126,19 @@ class ShopProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+  /////////////////////////*************get ALL cart***************////////////////
+  GetCart? getCart;
+  GetAllCart() async {
+    getCart = await DioHelper.dioHelper.getCart();
+    notifyListeners();
+  }
   ////////////////////////////add and delete cart/////
   AddCartModel? addCartModel;
   AddOrDeleteFromCart(int productId)async{
     cart[productId] = !cart[productId!]!;
+    notifyListeners();
     addCartModel= await DioHelper.dioHelper.AddToCart(productId);
+    GetAllCart();
     notifyListeners();
   }
   /////////////////////////*****product Details*******/////////////////////////

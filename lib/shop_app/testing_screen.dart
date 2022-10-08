@@ -16,9 +16,9 @@ class TestingScreen extends StatelessWidget {
           Consumer<ShopProvider>(builder: (context, provider, child) {
             return  Center(
               child: ElevatedButton(onPressed: (){
-                //DioHelper.dioHelper.UpdateUserData();
+                DioHelper.dioHelper.getCart();
 
-              }, child: Text('update')),
+              }, child: Text('get cart')),
             );
           },
 

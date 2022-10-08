@@ -13,6 +13,7 @@ import 'package:final_gsg_app_flutter/shop_app/models/search_model.dart';
 import '../models/category_product_model.dart';
 import '../models/change_favarite_model.dart';
 import '../models/faq_model.dart';
+import '../models/get_cart.dart';
 import '../models/product_details_model.dart';
 import '../models/setting_model.dart';
 
@@ -391,4 +392,23 @@ class DioHelper {
     log(addCartModel.data!.product!.name!);
     return addCartModel;
   }
+  //////////////////////*********get all cart**************///////////////////////
+getCart() async {
+  var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.cartsEndPoint);
+  Map<String, dynamic> mapHeaders = {
+    'lang': 'en',
+    'Content-Type': 'application/json',
+    'Authorization': '${SpHelper.spHelper.getToken()} '
+  };
+
+  Response response =
+      await dio.get(url.toString(), options: Options(headers: mapHeaders));
+  GetCart  getCart= GetCart.fromJson(response.data);
+
+  print(getCart.status);
+  print(getCart.data.toString());
+  print(getCart.data!.cartItems!.length);
+  return getCart;
+}
+//////////////////////**********************///////////////////////
 }

@@ -124,6 +124,7 @@ Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(alignment: AlignmentDirectional.bottomStart, children: [
+
                 Image.network(
                   model.image!,
                   width: double.infinity,
@@ -192,6 +193,7 @@ Widget buliderGridProduct(ProductsModel model) => Consumer<ShopProvider>(
                           color: Colors.white,
                         )),
                   ),
+                  SizedBox(width: 10,),
                   CircleAvatar(
                     radius: 15,
                     backgroundColor: provider.cart![model.id!] == true
