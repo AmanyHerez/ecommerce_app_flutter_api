@@ -1,3 +1,4 @@
+import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/login_screen.dart';
 import 'package:final_gsg_app_flutter/shop_app/view/auth_screen/widget/custome_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -5,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../provider/auth_provider.dart';
 import '../../router/router.dart';
 import '../../shop_layout/shop_layout_screen.dart';
+
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
@@ -24,10 +26,10 @@ class RegisterScreen extends StatelessWidget {
                     children: [
                       Center(
                           child: Image.asset(
-                            'asset/image/logo.png',
-                            width: 157,
-                            height: 109,
-                          )),
+                        'asset/image/logo.png',
+                        width: 157,
+                        height: 109,
+                      )),
                       SizedBox(
                         height: 20,
                       ),
@@ -61,7 +63,6 @@ class RegisterScreen extends StatelessWidget {
                         height: 20,
                       ),
                       Text('password'),
-
                       CustomTextfield(
                         controller: provider.passwordRegController,
                         validator: provider.passwordValidation,
@@ -71,8 +72,8 @@ class RegisterScreen extends StatelessWidget {
                             provider.changeVisiblityPassword();
                           },
                           icon: Icon(provider.suffix),
-                        ) ,
-                        obscureText:provider.isObscure,
+                        ),
+                        obscureText: provider.isObscure,
                       ),
                       SizedBox(
                         height: 20,
@@ -89,18 +90,36 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(
                         height: 30,
                       ),
-                      ElevatedButton(
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
                           onPressed: () async {
                             // DioHelper.dioHelper.login( provider.emailController.text,
                             //   provider. passwordController.text,);
-                           // await provider.login();
-                              if(provider.RegisterKey.currentState!.validate()){
-                                provider.Register();
-                                AppRouter.NavigateWithReplacemtnToWidget(ShopLayout());
-                              }
-
+                            // await provider.login();
+                            if (provider.RegisterKey.currentState!.validate()) {
+                              provider.Register();
+                              AppRouter.NavigateWithReplacemtnToWidget(
+                                  ShopLayout());
+                            }
                           },
-                          child: Text('Register')),
+                          child: Text('Register',style: TextStyle(fontSize: 18,),),
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(20),
+                            primary: Colors.black,
+                          ),
+
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Do you have an acount?"),
+                          InkWell(
+                            onTap: (){AppRouter.NavigateToWidget(LoginScreen());},
+                            child: Text('login',style:TextStyle(color: Colors.blue,)),),
+                        ],),
                     ],
                   ),
                 ),

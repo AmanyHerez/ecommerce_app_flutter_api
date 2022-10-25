@@ -140,6 +140,23 @@ Widget buildFavItem( ProductCart model) => Consumer<ShopProvider>(
                                 size: 14,
                                 color: Colors.white,
                               )),
+                        ),
+                        SizedBox(width: 10,),
+                        CircleAvatar(
+                          radius: 15,
+                          backgroundColor:
+                          provider.cart![model.id] == true
+                              ? Colors.green
+                              : Colors.grey,
+                          child: IconButton(
+                              onPressed: () {
+                                provider.AddOrDeleteFromCart(model.id!);
+                              },
+                              icon: Icon(
+                                Icons.shopping_cart,
+                                size: 14,
+                                color: Colors.white,
+                              )),
                         )
                       ],
                     ),
